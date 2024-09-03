@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Input, Radio, Button, DatePicker, Select } from 'antd';
+import { Form, Input, Radio, Button, DatePicker, Select, Tag } from 'antd';
 
 const { Option } = Select;
 
@@ -31,8 +31,8 @@ const StepOne = ({ onNext }) => {
 
 			<Form.Item label="Nimmst du Medikamente ein?" name="medications">
 				<Radio.Group>
-					<Radio value="yes">Ja</Radio>
-					<Radio value="no">Nein</Radio>
+					<Tag value="yes">Ja</Tag>
+					<Tag value="no">Nein</Tag>
 				</Radio.Group>
 			</Form.Item>
 
@@ -49,7 +49,24 @@ const StepOne = ({ onNext }) => {
 			</Form.Item>
 
 			<Form.Item label="Bundesland" name="state">
-				<Input />
+				<Select>
+					<Option value="baden-wurttemberg">Baden-Württemberg</Option>
+					<Option value="bavaria">Bayern</Option>
+					<Option value="berlin">Berlin</Option>
+					<Option value="brandenburg">Brandenburg</Option>
+					<Option value="bremen">Bremen</Option>
+					<Option value="hamburg">Hamburg</Option>
+					<Option value="hessen">Hessen</Option>
+					<Option value="lower-saxony">Niedersachsen</Option>
+					<Option value="mecklenburg-vorpommern">Mecklenburg-Vorpommern</Option>
+					<Option value="north-rhine-westphalia">Nordrhein-Westfalen</Option>
+					<Option value="rhineland-palatinate">Rheinland-Pfalz</Option>
+					<Option value="saarland">Saarland</Option>
+					<Option value="saxony">Sachsen</Option>
+					<Option value="saxony-anhalt">Sachsen-Anhalt</Option>
+					<Option value="schleswig-holstein">Schleswig-Holstein</Option>
+					<Option value="thuringia">Thüringen</Option>
+				</Select>
 			</Form.Item>
 
 			<Form.Item label="Stadt" name="city">
