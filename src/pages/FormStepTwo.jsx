@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Radio, Tag } from 'antd';
 import DatePicker from '../components/DatePicker'; // Import your custom DatePicker component
 import StyledLabel from '../components/StyledLabel'; // Import StyledLabel
+import EmojiRadioGroup from '../components/EmojiOptions';
 
 const StepTwo = ({ onBack, onNext }) => {
 	const [formData, setFormData] = useState({
@@ -43,8 +44,7 @@ const StepTwo = ({ onBack, onNext }) => {
 				/>
 			</Form.Item>
 
-			//////
-			<Form.Item label={<StyledLabel>Nimmst du Hormone ein?</StyledLabel>} name="medications">
+			<Form.Item label={<StyledLabel>Hast du regemäßige Abstände zwischen 21-28 Tage?</StyledLabel>} name="medications">
 				<Radio.Group
 					onChange={(e) => handleChange('hormones', e.target.value)}
 					value={formData.hormones}
@@ -54,45 +54,13 @@ const StepTwo = ({ onBack, onNext }) => {
 				</Radio.Group>
 			</Form.Item>
 
-			<Form.Item label={<StyledLabel>Hast du deine Hormonwerte in den letzten 6 Monaten überprüfen lassen?</StyledLabel>} name="medications">
-				<Radio.Group
-					onChange={(e) => handleChange('hormoneCheck', e.target.value)}
-					value={formData.hormoneCheck}
-				>
-					<Tag value="yes">Ja</Tag>
-					<Tag value="no">Nein</Tag>
-					<Tag value="no">Vielleicht</Tag>
-				</Radio.Group>
-			</Form.Item>
-
-			<Form.Item label={<StyledLabel>Vermutest oder weißt du ob du vielleicht schon in den Wechseljahren bist?</StyledLabel>} name="medications">
-				<Radio.Group
-					onChange={(e) => handleChange('menopause', e.target.value)}
-					value={formData.menopause}
-				>
-					<Tag value="yes">Ja</Tag>
-					<Tag value="no">Nein</Tag>
-				</Radio.Group>
-			</Form.Item>
-			//////
-
-
-			<Form.Item label={<StyledLabel>Hast du regelmäßige Abstände zwischen 21-28 Tagen?</StyledLabel>}>
-				<Radio.Group
-					onChange={(e) => handleChange('regularIntervals', e.target.value)}
-					value={formData.regularIntervals}
-				>
-					<Radio value="yes">Ja</Radio>
-					<Radio value="no">Nein</Radio>
-				</Radio.Group>
-			</Form.Item>
 
 			<Form.Item label={<StyledLabel>Wie stark ist oder war deine Blutung durchschnittlich?</StyledLabel>}>
 				<Radio.Group
 					onChange={(e) => handleChange('bleedingIntensity', e.target.value)}
 					value={formData.bleedingIntensity}
 				>
-					{[0, 1, '😍', 3, 4].map((value) => (
+					{['🙁', '😶', '😐', '🙂', '😍'].map((value) => (
 						<Radio key={value} value={value}>
 							{value}
 						</Radio>
@@ -112,6 +80,41 @@ const StepTwo = ({ onBack, onNext }) => {
 					))}
 				</Radio.Group>
 			</Form.Item>
+
+			<Form.Item label={<StyledLabel>Nimmst du hormone ein?</StyledLabel>} name="medications">
+				<Radio.Group
+					onChange={(e) => handleChange('hormoneCheck', e.target.value)}
+					value={formData.hormoneCheck}
+				>
+					<Tag value="yes">Ja</Tag>
+					<Tag value="no">Nein</Tag>
+					<Tag value="no">Vielleicht</Tag>
+				</Radio.Group>
+			</Form.Item>
+
+			<Form.Item label={<StyledLabel>Hast du deine Hormonwerte in den letzten 6 Monaten überprüfen lassen?</StyledLabel>} name="medications">
+				<Radio.Group
+					onChange={(e) => handleChange('menopause', e.target.value)}
+					value={formData.menopause}
+				>
+					<Tag value="yes">Ja</Tag>
+					<Tag value="no">Nein</Tag>
+				</Radio.Group>
+			</Form.Item>
+			<Form.Item label={<StyledLabel>Vermutest oder weisst du ob du vielleichtschon in den Wechseljahren bist?</StyledLabel>} name="medications">
+				<Radio.Group
+					onChange={(e) => handleChange('menopause', e.target.value)}
+					value={formData.menopause}
+				>
+					<Tag value="yes">Ja</Tag>
+					<Tag value="no">Nein</Tag>
+					<Tag value="no">Vieleicht</Tag>
+				</Radio.Group>
+			</Form.Item>
+
+
+
+
 
 
 
