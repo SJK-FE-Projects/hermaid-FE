@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Form, Input, Radio, Button, DatePicker, Select, Tag, message, Upload } from 'antd';
+import { Form, Input, Button, DatePicker, Select, message, Upload } from 'antd';
 import StyledLabel from '../components/StyledLabel';
+import RadioInputText from '../components/RadioInputText'; // Import RadioInputText component
 
 const { Option } = Select;
-
 const { Dragger } = Upload;
+
 const props = {
 	name: 'file',
 	multiple: true,
@@ -27,28 +28,25 @@ const props = {
 
 const StepOne = ({ onNext }) => {
 	const [form] = Form.useForm();
+	const [medications, setMedications] = useState(''); // State to handle the medication radio input
 
 	const onFinish = (values) => {
-		console.log('Step 1 Values:', values);
+		console.log('Step 1 Values:', { ...values, medications }); // Include medications state
 		onNext();
 	};
 
 	return (
 		<Form layout="vertical" form={form} onFinish={onFinish}>
-			<div style={{ display: 'flex', width: '100%', gap: "10px" }}>
+			<div style={{ display: 'flex', width: '100%', gap: '10px' }}>
 				<Dragger {...props}>
-					<p className="ant-upload-drag-icon">
-					</p>
-					<StyledLabel className="ant-upload-text">Bild hochladen(Optional)</StyledLabel>
-					<p className="ant-upload-hint">
-						JPG Format • max. 5MB
-					</p>
+					<p className="ant-upload-drag-icon"></p>
+					<StyledLabel className="ant-upload-text">Bild hochladen (Optional)</StyledLabel>
+					<p className="ant-upload-hint">JPG Format • max. 5MB</p>
 					<Button type="primary">Primary Button</Button>
 				</Dragger>
-
 			</div>
 
-			<div style={{ display: 'flex', width: '100%', gap: "10px" }}>
+			<div style={{ display: 'flex', width: '100%', gap: '10px' }}>
 				<Form.Item label={<StyledLabel>Gewicht (kg)</StyledLabel>} name="weight">
 					<Input />
 				</Form.Item>
@@ -58,19 +56,23 @@ const StepOne = ({ onNext }) => {
 				</Form.Item>
 			</div>
 
-			<Form.Item label={<StyledLabel>Hast du einer dieser Erkrankungen?</StyledLabel>} name="state">
+			<Form.Item label={<StyledLabel>Hast du eine dieser Erkrankungen?</StyledLabel>} name="state">
 				<Select>
-					<Option value="baden-wurttemberg">Ja</Option>
-					<Option value="bavaria">Nein</Option>
-					<Option value="berlin">Vielleicht</Option>
+					<Option value="yes">Ja</Option>
+					<Option value="no">Nein</Option>
+					<Option value="maybe">Vielleicht</Option>
 				</Select>
 			</Form.Item>
 
 			<Form.Item label={<StyledLabel>Nimmst du Medikamente ein?</StyledLabel>} name="medications">
-				<Radio.Group>
-					<Tag value="yes">Ja</Tag>
-					<Tag value="no">Nein</Tag>
-				</Radio.Group>
+				<RadioInputText
+					onChange={(value) => setMedications(value)} // Update state when value changes
+					value={medications} // Controlled input
+					options={[
+						{ label: 'Ja', value: 'yes' },
+						{ label: 'Nein', value: 'no' },
+					]}
+				/>
 			</Form.Item>
 
 			<Form.Item label={<StyledLabel>Geburtstag</StyledLabel>} name="birthday">
@@ -84,8 +86,8 @@ const StepOne = ({ onNext }) => {
 					<Option value="switzerland">Schweiz</Option>
 				</Select>
 			</Form.Item>
-			<div style={{ display: 'flex', width: '100%', gap: "10px" }}>
 
+			<div style={{ display: 'flex', width: '100%', gap: '10px' }}>
 				<Form.Item label={<StyledLabel>Bundesland</StyledLabel>} name="state" style={{ width: '50%' }}>
 					<Select>
 						<Option value="baden-wurttemberg">Baden-Württemberg</Option>
