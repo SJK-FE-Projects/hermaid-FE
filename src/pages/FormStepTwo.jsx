@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Radio } from 'antd';
+import { Form } from 'antd';
 import DatePicker from '../components/DatePicker'; // Import your custom DatePicker component
 import StyledLabel from '../components/StyledLabel'; // Import StyledLabel
 import RadioInputText from '../components/RadioInputText'; // Import RadioInputText
+import EmojiRadioGroup from '../components/EmojiOptions'; // Import your EmojiRadioGroup component
 
 const StepTwo = ({ onBack, onNext }) => {
 	const [formData, setFormData] = useState({
@@ -10,9 +11,9 @@ const StepTwo = ({ onBack, onNext }) => {
 		regularIntervals: '',
 		bleedingIntensity: '',
 		bleedingDays: '',
-		hormones: '',
 		hormoneCheck: '',
 		menopause: '',
+		menopauseCheck: '',
 		dateSelected: null, // Add a field for the date
 	});
 
@@ -53,29 +54,19 @@ const StepTwo = ({ onBack, onNext }) => {
 			</Form.Item>
 
 			<Form.Item label={<StyledLabel>Wie stark ist oder war deine Blutung durchschnittlich?</StyledLabel>}>
-				<Radio.Group
-					onChange={(e) => handleChange('bleedingIntensity', e.target.value)}
+				<EmojiRadioGroup
+					question="Wie stark ist oder war deine Blutung durchschnittlich?"
+					onChange={(value) => handleChange('bleedingIntensity', value)}
 					value={formData.bleedingIntensity}
-				>
-					{['🙁', '😶', '😐', '🙂', '😍'].map((value) => (
-						<Radio key={value} value={value}>
-							{value}
-						</Radio>
-					))}
-				</Radio.Group>
+				/>
 			</Form.Item>
 
 			<Form.Item label={<StyledLabel>Wie viele Tage blutest du durchschnittlich?</StyledLabel>}>
-				<Radio.Group
-					onChange={(e) => handleChange('bleedingDays', e.target.value)}
+				<EmojiRadioGroup
+					question="Wie viele Tage blutest du durchschnittlich?"
+					onChange={(value) => handleChange('bleedingDays', value)}
 					value={formData.bleedingDays}
-				>
-					{[0, 1, 2, 3, 4].map((value) => (
-						<Radio key={value} value={value}>
-							{value}
-						</Radio>
-					))}
-				</Radio.Group>
+				/>
 			</Form.Item>
 
 			<Form.Item label={<StyledLabel>Nimmst du Hormone ein?</StyledLabel>} name="hormoneCheck">

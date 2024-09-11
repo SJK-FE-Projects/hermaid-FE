@@ -29,11 +29,14 @@ const StyledSteps = styled(Steps)`
   justify-content: space-between;
   width: 100%;
   margin-top: 16px;
+  flex-direction: row;
+  align-items: baseline;
 
   .ant-steps-item {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    justify-content: start;
+    align-items: baseline; /* Aligning step number and text along the baseline */
   }
 
   .ant-steps-item-icon {
@@ -45,7 +48,7 @@ const StyledSteps = styled(Steps)`
     align-items: center;
     border-radius: 50%;
     border: 1px dashed #F3F3F9;
-    background-color: #F3F3F9;
+    background-color: none;
   }
 
   .ant-steps-item-process .ant-steps-item-icon,
@@ -56,7 +59,9 @@ const StyledSteps = styled(Steps)`
 
   .ant-steps-item-title {
     font-size: 14px;
-    color: #8F8FA8; /* Gray 300 */
+    color: #8F8FA8;
+    font-weight: 500;
+    margin-left: 8px; /* Adds some space between the icon and the text */
   }
 `;
 
@@ -73,11 +78,10 @@ const Header = ({ title, currentStep, onStepChange }) => {
 		<StyledHeader>
 			<Title>{title}</Title>
 			<StyledSteps current={currentStep}>
-				<Step title="Step 1" />
-				<Step title="Step 2" />
-				<Step title="Step 3" />
+				<Step title="Profil" />
+				<Step title="Periode" />
+				<Step title="Gesundheitsziele" />
 			</StyledSteps>
-
 		</StyledHeader>
 	);
 };

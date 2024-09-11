@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Form, Radio, Select } from 'antd';
+import { Form, Select } from 'antd';
 import StyledLabel from '../components/StyledLabel'; // Import StyledLabel
+import EmojiRadioGroup from '../components/EmojiOptions'; // Import your EmojiRadioGroup component
 
 const { Option } = Select;
 
@@ -38,58 +39,34 @@ const StepThree = ({ onBack, onNext }) => {
 
 			{/* Question 1: Satisfaction */}
 			<Form.Item label={<StyledLabel>Bist du mit deiner persönlichen Lebenssituation zufrieden?</StyledLabel>}>
-				<Radio.Group
-					onChange={(e) => handleChange('satisfaction', e.target.value)}
+				<EmojiRadioGroup
+					onChange={(value) => handleChange('satisfaction', value)}
 					value={formData.satisfaction}
-				>
-					{['🙁', '😶', '😐', '🙂', '😍'].map((value) => (
-						<Radio key={value} value={value}>
-							{value}
-						</Radio>
-					))}
-				</Radio.Group>
+				/>
 			</Form.Item>
 
 			{/* Question 2: Impact */}
 			<Form.Item label={<StyledLabel>Wie würdest du den Gesamteinfluss deiner Beschwerden auf dein tägliches Leben bewerten?</StyledLabel>}>
-				<Radio.Group
-					onChange={(e) => handleChange('impact', e.target.value)}
+				<EmojiRadioGroup
+					onChange={(value) => handleChange('impact', value)}
 					value={formData.impact}
-				>
-					{['🙁', '😶', '😐', '🙂', '😍'].map((value) => (
-						<Radio key={value} value={value}>
-							{value}
-						</Radio>
-					))}
-				</Radio.Group>
+				/>
 			</Form.Item>
 
 			{/* Question 3: Physical Wellbeing */}
 			<Form.Item label={<StyledLabel>Wie zufrieden bist du mit deiner aktuellen körperlichen Verfassung?</StyledLabel>}>
-				<Radio.Group
-					onChange={(e) => handleChange('physicalWellbeing', e.target.value)}
+				<EmojiRadioGroup
+					onChange={(value) => handleChange('physicalWellbeing', value)}
 					value={formData.physicalWellbeing}
-				>
-					{['🙁', '😶', '😐', '🙂', '😍'].map((value) => (
-						<Radio key={value} value={value}>
-							{value}
-						</Radio>
-					))}
-				</Radio.Group>
+				/>
 			</Form.Item>
 
 			{/* Question 4: Emotional Wellbeing */}
 			<Form.Item label={<StyledLabel>Wie zufrieden bist du mit deiner aktuellen emotionalen Verfassung?</StyledLabel>}>
-				<Radio.Group
-					onChange={(e) => handleChange('emotionalWellbeing', e.target.value)}
+				<EmojiRadioGroup
+					onChange={(value) => handleChange('emotionalWellbeing', value)}
 					value={formData.emotionalWellbeing}
-				>
-					{['🙁', '😶', '😐', '🙂', '😍'].map((value) => (
-						<Radio key={value} value={value}>
-							{value}
-						</Radio>
-					))}
-				</Radio.Group>
+				/>
 			</Form.Item>
 
 			{/* Health Goals (using Select multiple) */}

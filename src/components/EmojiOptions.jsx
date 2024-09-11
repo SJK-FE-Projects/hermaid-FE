@@ -1,48 +1,50 @@
 import React from 'react';
 import { Form, Radio } from 'antd';
-import StyledLabel from './StyledLabel'; // Import your StyledLabel component
 import styled from 'styled-components';
 
-const EmojiOption = styled.div`
-  width: 50px;
-  height: 50px;
-  background-color: #F7F6F2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 5px;
+// Styled Radio Button (Styled to look like Tags)
+const StyledRadio = styled(Radio.Button)`
   cursor: pointer;
-  margin: 5px;
-  border: ${(props) => (props.selected ? '2px solid #E44124' : '2px solid transparent')};
-  transition: border 0.3s ease;
-
+  padding: 0 16px;
+  height: 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background-color: ${(props) => (props.checked ? '#FFF5EB' : 'none')};
+  color: ${(props) => (props.checked ? '#E15939' : '#000000')};
+  border: 1px solid ${(props) => (props.checked ? '#E15939' : 'none')};
   &:hover {
-    border: 2px solid #E44124;
+    background-color: #FFF5EB;
   }
 `;
 
-const EmojiRadioGroup = ({ question, onChange, value }) => {
-	const emojiOptions = ['🙁', '😶', '😐', '🙂', '😍'];
+// Styled Radio Group with flex and gap
+const StyledRadioGroup = styled(Radio.Group)`
+  display: flex;
+  flex-direction: row;
+  gap: 8px; /* Adds gap between the radio buttons */
+`;
+
+const EmojiRadioGroup = ({ question, value, onChange }) => {
+	const options = [
+		{ emoji: '🙁', value: 1 },
+		{ emoji: '😶', value: 2 },
+		{ emoji: '😐', value: 3 },
+		{ emoji: '🙂', value: 4 },
+		{ emoji: '😍', value: 5 },
+	];
 
 	return (
-		<Form.Item label={<StyledLabel>{question}</StyledLabel>}>
-			<div style={{ display: 'flex', gap: '10px' }}>
-				{emojiOptions.map((emoji) => (
-					<Radio
-						key={emoji}
-						value={emoji}
-						style={{ display: 'none' }} // Hide the actual radio input
-						checked={value === emoji}
-					>
-						<EmojiOption
-							onClick={() => onChange({ target: { value: emoji } })}
-							selected={value === emoji}
-						>
-							{emoji}
-						</EmojiOption>
-					</Radio>
+		<Form.Item label={question}>
+			<StyledRadioGroup value={value} onChange={(e) => onChange(e.target.value)}>
+				{options.map((option) => (
+					<StyledRadio key={option.value} value={option.value}>
+						{option.emoji}
+					</StyledRadio>
 				))}
-			</div>
+			</StyledRadioGroup>
 		</Form.Item>
 	);
 };
