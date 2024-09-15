@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Form, Input, Button, DatePicker, Select, message, Upload } from 'antd';
+import { Form, Input, Button, DatePicker, Select, message, Upload, Row, Col } from 'antd';
 import StyledLabel from '../components/StyledLabel';
 import RadioInputText from '../components/RadioInputText'; // Import RadioInputText component
+import InputWrapper from '../components/InputWrapper';
 
 const { Option } = Select;
 const { Dragger } = Upload;
@@ -37,24 +38,38 @@ const StepOne = ({ onNext }) => {
 
 	return (
 		<Form layout="vertical" form={form} onFinish={onFinish}>
-			<div style={{ display: 'flex', width: '100%', gap: '10px' }}>
-				<Dragger {...props}>
-					<p className="ant-upload-drag-icon"></p>
-					<StyledLabel className="ant-upload-text">Bild hochladen (Optional)</StyledLabel>
-					<p className="ant-upload-hint">JPG Format • max. 5MB</p>
-					<Button type="primary">Primary Button</Button>
-				</Dragger>
-			</div>
 
-			<div style={{ display: 'flex', width: '100%', gap: '10px' }}>
-				<Form.Item label={<StyledLabel>Gewicht (kg)</StyledLabel>} name="weight">
-					<Input />
-				</Form.Item>
 
-				<Form.Item label={<StyledLabel>Größe (cm)</StyledLabel>} name="height">
-					<Input />
-				</Form.Item>
-			</div>
+			<Dragger {...props}>
+				<Row align="middle" justify="space-between">
+					<Col>
+						<div style={{ display: 'flex', flexDirection: 'column', justify: 'start', gap: '10px', align: 'start' }}>
+							<p className="ant-upload-drag-icon"></p>
+							<StyledLabel className="ant-upload-text">Bild hochladen (Optional)</StyledLabel>
+							<p className="ant-upload-hint">JPG Format • max. 5MB</p>
+						</div>
+					</Col>
+					<Col>
+						<Button type="primary">Primary Button</Button>
+					</Col>
+				</Row>
+			</Dragger>
+
+
+
+			<Row gutter={16} style={{ marginTop: '16px' }}>
+				<Col span={12}>
+					<Form.Item label={<StyledLabel>Gewicht (kg)</StyledLabel>} name="weight">
+						<Input />
+					</Form.Item>
+				</Col>
+
+				<Col span={12}>
+					<Form.Item label={<StyledLabel>Größe (cm)</StyledLabel>} name="height">
+						<Input />
+					</Form.Item>
+				</Col>
+			</Row>
 
 			<Form.Item label={<StyledLabel>Hast du eine dieser Erkrankungen?</StyledLabel>} name="state">
 				<Select>
@@ -65,14 +80,16 @@ const StepOne = ({ onNext }) => {
 			</Form.Item>
 
 			<Form.Item label={<StyledLabel>Nimmst du Medikamente ein?</StyledLabel>} name="medications">
-				<RadioInputText
-					onChange={(value) => setMedications(value)} // Update state when value changes
-					value={medications} // Controlled input
-					options={[
-						{ label: 'Ja', value: 'yes' },
-						{ label: 'Nein', value: 'no' },
-					]}
-				/>
+				<InputWrapper>
+					<RadioInputText
+						onChange={(value) => setMedications(value)} // Update state when value changes
+						value={medications} // Controlled input
+						options={[
+							{ label: 'Ja', value: 'yes' },
+							{ label: 'Nein', value: 'no' },
+						]}
+					/>
+				</InputWrapper>
 			</Form.Item>
 
 			<Form.Item label={<StyledLabel>Geburtstag</StyledLabel>} name="birthday">
@@ -87,32 +104,24 @@ const StepOne = ({ onNext }) => {
 				</Select>
 			</Form.Item>
 
-			<div style={{ display: 'flex', width: '100%', gap: '10px' }}>
-				<Form.Item label={<StyledLabel>Bundesland</StyledLabel>} name="state" style={{ width: '50%' }}>
-					<Select>
-						<Option value="baden-wurttemberg">Baden-Württemberg</Option>
-						<Option value="bavaria">Bayern</Option>
-						<Option value="berlin">Berlin</Option>
-						<Option value="brandenburg">Brandenburg</Option>
-						<Option value="bremen">Bremen</Option>
-						<Option value="hamburg">Hamburg</Option>
-						<Option value="hessen">Hessen</Option>
-						<Option value="lower-saxony">Niedersachsen</Option>
-						<Option value="mecklenburg-vorpommern">Mecklenburg-Vorpommern</Option>
-						<Option value="north-rhine-westphalia">Nordrhein-Westfalen</Option>
-						<Option value="rhineland-palatinate">Rheinland-Pfalz</Option>
-						<Option value="saarland">Saarland</Option>
-						<Option value="saxony">Sachsen</Option>
-						<Option value="saxony-anhalt">Sachsen-Anhalt</Option>
-						<Option value="schleswig-holstein">Schleswig-Holstein</Option>
-						<Option value="thuringia">Thüringen</Option>
-					</Select>
-				</Form.Item>
+			<Row gutter={16}>
+				<Col span={12}>
+					<Form.Item label={<StyledLabel>Bundesland</StyledLabel>} name="state">
+						<Select>
+							<Option value="baden-wurttemberg">Baden-Württemberg</Option>
+							<Option value="bavaria">Bayern</Option>
+							<Option value="berlin">Berlin</Option>
+							{/* Add other states here */}
+						</Select>
+					</Form.Item>
+				</Col>
 
-				<Form.Item label={<StyledLabel>Stadt</StyledLabel>} name="city" style={{ width: '50%' }}>
-					<Input />
-				</Form.Item>
-			</div>
+				<Col span={12}>
+					<Form.Item label={<StyledLabel>Stadt</StyledLabel>} name="city">
+						<Input />
+					</Form.Item>
+				</Col>
+			</Row>
 		</Form>
 	);
 };

@@ -12,6 +12,7 @@ const StyledRadio = styled(Radio.Button)`
   align-items: center;
   justify-content: center;
   border-radius: 8px;
+  margin:0px;
   background-color: ${(props) => (props.checked ? '#FFF5EB' : 'none')};
   color: ${(props) => (props.checked ? '#E15939' : '#000000')};
   border: 1px solid ${(props) => (props.checked ? '#E15939' : 'none')};

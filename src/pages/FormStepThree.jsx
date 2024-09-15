@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Select } from 'antd';
 import StyledLabel from '../components/StyledLabel'; // Import StyledLabel
 import EmojiRadioGroup from '../components/EmojiOptions'; // Import your EmojiRadioGroup component
+import InputWrapper from '../components/InputWrapper';
 
 const { Option } = Select;
 
@@ -39,34 +40,42 @@ const StepThree = ({ onBack, onNext }) => {
 
 			{/* Question 1: Satisfaction */}
 			<Form.Item label={<StyledLabel>Bist du mit deiner persönlichen Lebenssituation zufrieden?</StyledLabel>}>
-				<EmojiRadioGroup
-					onChange={(value) => handleChange('satisfaction', value)}
-					value={formData.satisfaction}
-				/>
+				<InputWrapper>
+					<EmojiRadioGroup
+						onChange={(value) => handleChange('satisfaction', value)}
+						value={formData.satisfaction}
+					/>
+				</InputWrapper>
 			</Form.Item>
 
 			{/* Question 2: Impact */}
 			<Form.Item label={<StyledLabel>Wie würdest du den Gesamteinfluss deiner Beschwerden auf dein tägliches Leben bewerten?</StyledLabel>}>
-				<EmojiRadioGroup
-					onChange={(value) => handleChange('impact', value)}
-					value={formData.impact}
-				/>
+				<InputWrapper>
+					<EmojiRadioGroup
+						onChange={(value) => handleChange('impact', value)}
+						value={formData.impact}
+					/>
+				</InputWrapper>
 			</Form.Item>
 
 			{/* Question 3: Physical Wellbeing */}
 			<Form.Item label={<StyledLabel>Wie zufrieden bist du mit deiner aktuellen körperlichen Verfassung?</StyledLabel>}>
-				<EmojiRadioGroup
-					onChange={(value) => handleChange('physicalWellbeing', value)}
-					value={formData.physicalWellbeing}
-				/>
+				<InputWrapper>
+					<EmojiRadioGroup
+						onChange={(value) => handleChange('physicalWellbeing', value)}
+						value={formData.physicalWellbeing}
+					/>
+				</InputWrapper>
 			</Form.Item>
 
 			{/* Question 4: Emotional Wellbeing */}
 			<Form.Item label={<StyledLabel>Wie zufrieden bist du mit deiner aktuellen emotionalen Verfassung?</StyledLabel>}>
-				<EmojiRadioGroup
-					onChange={(value) => handleChange('emotionalWellbeing', value)}
-					value={formData.emotionalWellbeing}
-				/>
+				<InputWrapper>
+					<EmojiRadioGroup
+						onChange={(value) => handleChange('emotionalWellbeing', value)}
+						value={formData.emotionalWellbeing}
+					/>
+				</InputWrapper>
 			</Form.Item>
 
 			{/* Health Goals (using Select multiple) */}

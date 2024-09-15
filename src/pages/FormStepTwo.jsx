@@ -4,6 +4,7 @@ import DatePicker from '../components/DatePicker'; // Import your custom DatePic
 import StyledLabel from '../components/StyledLabel'; // Import StyledLabel
 import RadioInputText from '../components/RadioInputText'; // Import RadioInputText
 import EmojiRadioGroup from '../components/EmojiOptions'; // Import your EmojiRadioGroup component
+import InputWrapper from '../components/InputWrapper';
 
 const StepTwo = ({ onBack, onNext }) => {
 	const [formData, setFormData] = useState({
@@ -43,65 +44,75 @@ const StepTwo = ({ onBack, onNext }) => {
 			</Form.Item>
 
 			<Form.Item label={<StyledLabel>Hast du regelmäßige Abstände zwischen 21-28 Tage?</StyledLabel>} name="regularIntervals">
-				<RadioInputText
-					onChange={(value) => handleChange('regularIntervals', value)}
-					value={formData.regularIntervals}
-					options={[
-						{ label: 'Ja', value: 'yes' },
-						{ label: 'Nein', value: 'no' },
-					]}
-				/>
+				<InputWrapper>
+					<RadioInputText
+						onChange={(value) => handleChange('regularIntervals', value)}
+						value={formData.regularIntervals}
+						options={[
+							{ label: 'Ja', value: 'yes' },
+							{ label: 'Nein', value: 'no' },
+						]}
+					/>
+				</InputWrapper>
 			</Form.Item>
 
 			<Form.Item label={<StyledLabel>Wie stark ist oder war deine Blutung durchschnittlich?</StyledLabel>}>
-				<EmojiRadioGroup
-					question="Wie stark ist oder war deine Blutung durchschnittlich?"
-					onChange={(value) => handleChange('bleedingIntensity', value)}
-					value={formData.bleedingIntensity}
-				/>
+				<InputWrapper>
+					<EmojiRadioGroup
+						onChange={(value) => handleChange('bleedingIntensity', value)}
+						value={formData.bleedingIntensity}
+					/>
+				</InputWrapper>
 			</Form.Item>
 
 			<Form.Item label={<StyledLabel>Wie viele Tage blutest du durchschnittlich?</StyledLabel>}>
-				<EmojiRadioGroup
-					question="Wie viele Tage blutest du durchschnittlich?"
-					onChange={(value) => handleChange('bleedingDays', value)}
-					value={formData.bleedingDays}
-				/>
+				<InputWrapper>
+					<EmojiRadioGroup
+						onChange={(value) => handleChange('bleedingDays', value)}
+						value={formData.bleedingDays}
+					/>
+				</InputWrapper>
 			</Form.Item>
 
 			<Form.Item label={<StyledLabel>Nimmst du Hormone ein?</StyledLabel>} name="hormoneCheck">
-				<RadioInputText
-					onChange={(value) => handleChange('hormoneCheck', value)}
-					value={formData.hormoneCheck}
-					options={[
-						{ label: 'Ja', value: 'yes' },
-						{ label: 'Nein', value: 'no' },
-						{ label: 'Vielleicht', value: 'maybe' },
-					]}
-				/>
+				<InputWrapper>
+					<RadioInputText
+						onChange={(value) => handleChange('hormoneCheck', value)}
+						value={formData.hormoneCheck}
+						options={[
+							{ label: 'Ja', value: 'yes' },
+							{ label: 'Nein', value: 'no' },
+							{ label: 'Vielleicht', value: 'maybe' },
+						]}
+					/>
+				</InputWrapper>
 			</Form.Item>
 
 			<Form.Item label={<StyledLabel>Hast du deine Hormonwerte in den letzten 6 Monaten überprüfen lassen?</StyledLabel>} name="menopause">
-				<RadioInputText
-					onChange={(value) => handleChange('menopause', value)}
-					value={formData.menopause}
-					options={[
-						{ label: 'Ja', value: 'yes' },
-						{ label: 'Nein', value: 'no' },
-					]}
-				/>
+				<InputWrapper>
+					<RadioInputText
+						onChange={(value) => handleChange('menopause', value)}
+						value={formData.menopause}
+						options={[
+							{ label: 'Ja', value: 'yes' },
+							{ label: 'Nein', value: 'no' },
+						]}
+					/>
+				</InputWrapper>
 			</Form.Item>
 
 			<Form.Item label={<StyledLabel>Vermutest oder weißt du, ob du schon in den Wechseljahren bist?</StyledLabel>} name="menopauseCheck">
-				<RadioInputText
-					onChange={(value) => handleChange('menopauseCheck', value)}
-					value={formData.menopauseCheck}
-					options={[
-						{ label: 'Ja', value: 'yes' },
-						{ label: 'Nein', value: 'no' },
-						{ label: 'Vielleicht', value: 'maybe' },
-					]}
-				/>
+				<InputWrapper>
+					<RadioInputText
+						onChange={(value) => handleChange('menopauseCheck', value)}
+						value={formData.menopauseCheck}
+						options={[
+							{ label: 'Ja', value: 'yes' },
+							{ label: 'Nein', value: 'no' },
+							{ label: 'Vielleicht', value: 'maybe' },
+						]}
+					/>
+				</InputWrapper>
 			</Form.Item>
 		</Form>
 	);
